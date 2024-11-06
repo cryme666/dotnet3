@@ -54,16 +54,16 @@ namespace lab3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SubjectID,SubjectName")] Subject subject)
         {
-            if (ModelState.IsValid)
+            // if (ModelState.IsValid)
             {
                 _context.Add(subject);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(subject);
+            // return View(subject);
         }
 
-        // GET: Subjects/Edit/5
+        // GET: Subjects/   /5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,7 +91,7 @@ namespace lab3.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            // if (ModelState.IsValid)
             {
                 try
                 {
@@ -111,7 +111,7 @@ namespace lab3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(subject);
+            // return View(subject);
         }
 
         // GET: Subjects/Delete/5

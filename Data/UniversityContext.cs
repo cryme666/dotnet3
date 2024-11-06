@@ -12,7 +12,7 @@ public class Lecturer
     public ICollection<LecturerSubject> LecturerSubjects { get; set; }
 }
 public class Subject
-{
+{   
     public int SubjectID { get; set; }
     public string SubjectName { get; set; }
 
@@ -54,9 +54,15 @@ public class UniversityContext : DbContext
     public DbSet<Position> Position { get; set; }
     public DbSet<LecturerSubject> LecturerSubject { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<LecturerSubject>()
-            .HasKey(ls => new { ls.LecturerID, ls.SubjectID });
-    }
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Lecturer>().ToTable("lecturer");
+    modelBuilder.Entity<Subject>().ToTable("subject");
+    modelBuilder.Entity<Position>().ToTable("position");
+    modelBuilder.Entity<LecturerSubject>().ToTable("lecturersubject");
+
+    modelBuilder.Entity<LecturerSubject>()
+        .HasKey(ls => new { ls.LecturerID, ls.SubjectID });
+}
+
 }
